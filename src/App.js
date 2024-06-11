@@ -26,7 +26,9 @@ function App() {
       let ph = playerHand;
       let di = deckIndex;
 
-      dh.push(dealCard(di++, shuffledDeck));
+      const firstDealerCard = dealCard(di++, shuffledDeck);
+      Object.defineProperty(firstDealerCard, 'showBack', {value: true});
+      dh.push(firstDealerCard);
       ph.push(dealCard(di++, shuffledDeck));
       dh.push(dealCard(di++, shuffledDeck));
       ph.push(dealCard(di++, shuffledDeck));
@@ -49,7 +51,7 @@ function App() {
       <section className="parent">
         <div><b>Dealer:</b></div>
         { dealerHand.map((element) => (
-          <Card card='5_of_clubs.png' onClick={handleCardClick} showBack={true} />)
+          <Card card='5_of_clubs.png' onClick={handleCardClick} showBack={element.showBack} />)
         )}
         <Card card="back_of_card.png" onClick={handleCardClick} />
         <Card card="2_of_clubs.png" onClick={handleCardClick} />
