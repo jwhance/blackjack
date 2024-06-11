@@ -149,6 +149,4 @@ const playBlackjack = () => {
     }
 }
 
-console.log('XXXXXXXXXXXXXXXXXXX');
-
 export {getCardDeck, getShuffledDeck, dealCard}

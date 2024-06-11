@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import './App.css';
 import Card from './Card';
+
 import {getShuffledDeck, getCardDeck, dealCard} from './game.js';
 
 
@@ -45,6 +46,10 @@ function App() {
     console.log(playerHand);
   }
 
+  const handleButtonClick = (event) => {
+    console.log(event.target.title);
+  }
+
 
   return (
     <div className="App">
@@ -59,6 +64,12 @@ function App() {
         { playerHand.map((element, i) => (
           <Card card={element.face + '_of_' + element.suit + '.png'} onClick={handleCardClick} showBack={element.showBack}  key={i*100}/>)
         )}
+        </section>
+        <section className='parent-button'>
+          <div />
+          <button className="button" onClick={handleButtonClick} title="Hit">Hit</button>
+          <button className="button" onClick={handleButtonClick} title="Stand">Stand</button>
+          <button className="button" onClick={handleButtonClick} title="Shuffle">Shuffle</button>
         </section>
     </div>
   );
