@@ -50,19 +50,15 @@ function App() {
     <div className="App">
       <section className="parent">
         <div><b>Dealer:</b></div>
-        { dealerHand.map((element) => (
-          <Card card='5_of_clubs.png' onClick={handleCardClick} showBack={element.showBack} />)
+        { dealerHand.map((element, i) => (
+          <Card card={element.face + '_of_' + element.suit + '.png'} onClick={handleCardClick} showBack={element.showBack} key={i} />)
         )}
-        <Card card="back_of_card.png" onClick={handleCardClick} />
-        <Card card="2_of_clubs.png" onClick={handleCardClick} />
         </section>
         <section className="parent">
         <div><b>Player:</b></div>
-        <Card card="7_of_hearts.png" onClick={handleCardClick} />
-        <Card card="6_of_hearts.png" onClick={handleCardClick} />
-        <Card card="5_of_hearts.png" onClick={handleCardClick} />
-        <Card card="4_of_hearts.png" onClick={handleCardClick} />
-        <Card card="3_of_hearts.png" onClick={handleCardClick} />
+        { playerHand.map((element, i) => (
+          <Card card={element.face + '_of_' + element.suit + '.png'} onClick={handleCardClick} showBack={element.showBack}  key={i*100}/>)
+        )}
         </section>
     </div>
   );
