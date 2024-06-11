@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")({ sigint: true });
+//const prompt = require("prompt-sync")({ sigint: true });
 
 const cCards = ['ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
 const cardValues = [[11, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10], [10, 10], [10, 10], [10, 10]];
@@ -22,7 +22,7 @@ const getShuffledDeck = (deck) => {
   let currentIndex = deck.length,
     randomIndex;
 
-  while (currentIndex != 0) {
+  while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
@@ -148,3 +148,7 @@ const playBlackjack = () => {
         }
     }
 }
+
+console.log('XXXXXXXXXXXXXXXXXXX');
+
+export {getCardDeck, getShuffledDeck, dealCard}
