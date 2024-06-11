@@ -28,9 +28,18 @@
   color: #61dafb;
 }
 
+.parent {
+  display: grid;
+  grid-template-columns: 15% 10% 10% 10% 10% 10% 10%;
+  justify-content:left;
+  text-align: left;
+
+}
+
 .card-image {
   display: inline;
   max-height: 20vh;
+  min-height: 20vh;
 }
 
 @keyframes App-logo-spin {
