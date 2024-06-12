@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Card from './Card';
 
-import {getShuffledDeck, getCardDeck, dealCard} from './game.js';
+import {getShuffledDeck, getCardDeck, dealCard, getHandTotal, getHitStandOrBust} from './game.js';
 
 
 function App() {
@@ -19,6 +19,13 @@ function App() {
     setShuffledDeck(getShuffledDeck(getCardDeck()));
   }
 
+  // const insertCardIntoHand = (hand, deck) => {
+  //   let di = deckIndex;
+  //   hand.push(dealCard(di++, deck));
+  //   setDeckIndex(di);
+  //   return hand;
+  // }
+
   useEffect(() => {
     console.log('USE EFFECT');
     // Deal the initial cards
@@ -28,7 +35,7 @@ function App() {
       let di = deckIndex;
 
       const firstDealerCard = dealCard(di++, shuffledDeck);
-      Object.defineProperty(firstDealerCard, 'showBack', {value: true});
+      Object.defineProperty(firstDealerCard, 'showBack', {value: true, writable: true});
       dh.push(firstDealerCard);
       ph.push(dealCard(di++, shuffledDeck));
       dh.push(dealCard(di++, shuffledDeck));
@@ -59,8 +66,35 @@ function App() {
       ph.push(dealCard(di++, shuffledDeck));
       setPlayerHand(ph);
       setDeckIndex(di);
+
+      // Get the total
+      const playerHandTotal = getHandTotal(playerHand);
+      if (playerHandTotal > 21) {
+        // Bust
+        alert(`Player BUST at ${playerHandTotal}`);
+      }
     } else {
-      // Stand
+      // Stand - show down card
+      let dh = dealerHand;
+      dh[0].showBack = false;
+      setDealerHand(dh);
+
+      while (getHitStandOrBust(dealerHand) === 'hit' || getHandTotal(dealerHand) <= getHandTotal(playerHand)) {
+        console.log('XXX');
+        let di = deckIndex;
+        let dh = dealerHand;
+
+        dh.push(dealCard(di++, shuffledDeck));
+        setDeckIndex(di);
+        setDealerHand(dh);
+
+        if (getHitStandOrBust(dealerHand) === 'bust') {
+            alert("Dealer Bust!!");
+            break;
+        } else {
+            console.log(dealerHand);
+        }
+      }      
     }
   }
 

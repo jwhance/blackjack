@@ -149,4 +149,4 @@ const playBlackjack = () => {
     }
 }
 
-export {getCardDeck, getShuffledDeck, dealCard}
+export {getCardDeck, getShuffledDeck, dealCard, getHandTotal, getHitStandOrBust}
