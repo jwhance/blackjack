@@ -38,7 +38,7 @@ function App() {
       setPlayerHand(ph);
       setDeckIndex(di); 
     }   
-  }, [dealerHand, playerHand])
+  }, [dealerHand, playerHand, deckIndex, shuffledDeck])
 
   const handleCardClick = (card) => {
     console.log(card.target.title);
@@ -48,6 +48,20 @@ function App() {
 
   const handleButtonClick = (event) => {
     console.log(event.target.title);
+    if (event.target.title === 'Shuffle') {
+      setPlayerHand([]);
+      setDealerHand([]);
+      setDeckIndex(0);
+      setShuffledDeck(getShuffledDeck(getCardDeck()));
+    } else if (event.target.title === 'Hit') {
+      let ph = playerHand;
+      let di = deckIndex;
+      ph.push(dealCard(di++, shuffledDeck));
+      setPlayerHand(ph);
+      setDeckIndex(di);
+    } else {
+      // Stand
+    }
   }
 
 
