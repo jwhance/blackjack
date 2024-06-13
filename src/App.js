@@ -75,24 +75,29 @@ function App() {
       }
     } else {
       // Stand - show down card
+      let didx = deckIndex;
       let dh = dealerHand;
       dh[0].showBack = false;
-      setDealerHand(dh);
 
-      let didx = deckIndex;
-      let dhnd = dealerHand;
-      while (getHitStandOrBust(dhnd) === 'hit' || getHandTotal(dhnd) <= getHandTotal(playerHand)) {
+      while (getHitStandOrBust(dh) === 'hit' || getHandTotal(dh) <= getHandTotal(playerHand)) {
         dh.push(dealCard(didx++, shuffledDeck));
 
-        if (getHitStandOrBust(dhnd) === 'bust') {
+        if (getHitStandOrBust(dh) === 'bust') {
             setDeckIndex(didx);
-            setDealerHand(dhnd);          
+            setDealerHand(dh);          
             alert("Dealer Bust!!");
             break;
-        } else {
-            console.log(dhnd);
-        }
-      }      
+        } 
+      }
+      
+      if (getHitStandOrBust(dh) !== 'bust' && (getHandTotal(dh) > getHandTotal(playerHand))) {
+        alert(`Dealer wins with ${getHandTotal(dh)}`);
+      } else {
+        alert(`Player wins with ${getHandTotal(playerHand)}`);
+      }
+
+      setDeckIndex(didx);
+      setDealerHand(dh);      
     }
   }
 
