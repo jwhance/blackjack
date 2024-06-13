@@ -80,7 +80,6 @@ function App() {
       setDealerHand(dh);
 
       while (getHitStandOrBust(dealerHand) === 'hit' || getHandTotal(dealerHand) <= getHandTotal(playerHand)) {
-        console.log('XXX');
         let di = deckIndex;
         let dh = dealerHand;
 

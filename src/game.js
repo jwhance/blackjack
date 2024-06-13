@@ -59,7 +59,7 @@ const getHitStandOrBust = (dealerHand) => {
 }
 
 const handHasAce = (hand) => {
-    return hand.some(card => card.face === 'A');
+    return hand.some(card => card.face === 'ace');
 }
 
 
