@@ -79,19 +79,18 @@ function App() {
       dh[0].showBack = false;
       setDealerHand(dh);
 
-      while (getHitStandOrBust(dealerHand) === 'hit' || getHandTotal(dealerHand) <= getHandTotal(playerHand)) {
-        let di = deckIndex;
-        let dh = dealerHand;
+      let didx = deckIndex;
+      let dhnd = dealerHand;
+      while (getHitStandOrBust(dhnd) === 'hit' || getHandTotal(dhnd) <= getHandTotal(playerHand)) {
+        dh.push(dealCard(didx++, shuffledDeck));
 
-        dh.push(dealCard(di++, shuffledDeck));
-        setDeckIndex(di);
-        setDealerHand(dh);
-
-        if (getHitStandOrBust(dealerHand) === 'bust') {
+        if (getHitStandOrBust(dhnd) === 'bust') {
+            setDeckIndex(didx);
+            setDealerHand(dhnd);          
             alert("Dealer Bust!!");
             break;
         } else {
-            console.log(dealerHand);
+            console.log(dhnd);
         }
       }      
     }
