@@ -27,7 +27,6 @@ function App() {
   // }
 
   useEffect(() => {
-    console.log('USE EFFECT');
     // Deal the initial cards
     if (dealerHand.length === 0) {
       let dh = dealerHand;
@@ -49,7 +48,7 @@ function App() {
 
   const handleCardClick = (card) => {
     console.log(card.target.title);
-    console.log(dealerHand);
+    // console.log(dealerHand);
     console.log(playerHand);
   }
 
